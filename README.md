@@ -1,1 +1,1 @@
-# Examples of JSON encoding/decoding in Golang
+# [Examples](https://www.sohamkamani.com/golang/parsing-json/) of JSON encoding/decoding in Golang
