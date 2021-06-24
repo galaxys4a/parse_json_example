@@ -3,14 +3,15 @@ package json_examples
 import (
 	"encoding/json"
 	"time"
+
 	//"fmt"
 	"log"
 	"net/http"
 )
 
 type MyData struct {
-	A int `json:"a"`
-	B string `json:"b"`
+	A int             `json:"a"`
+	B string          `json:"b"`
 	C json.RawMessage `json:"c"`
 }
 
@@ -32,8 +33,8 @@ func (m *MyData) MarshalJSON() ([]byte, error) {
 	type NewMyData MyData
 
 	result := struct {
-		Data *NewMyData
-		TimeStamp time.Time
+		Data      *NewMyData `json:"data"`
+		TimeStamp time.Time  `json:"date"`
 	}{Data: (*NewMyData)(m), TimeStamp: time.Now()}
 
 	return json.Marshal(result)
