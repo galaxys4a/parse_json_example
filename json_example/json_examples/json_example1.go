@@ -2,6 +2,7 @@ package json_examples
 
 import (
 	"encoding/json"
+	"time"
 	//"fmt"
 	"log"
 	"net/http"
@@ -23,6 +24,17 @@ func Ex1() {
 
 	err := http.ListenAndServe(":8787", nil)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal(err.Error())
 	}
+}
+
+func (m *MyData) MarshalJSON() ([]byte, error) {
+	type NewMyData MyData
+
+	result := struct {
+		Data *NewMyData
+		TimeStamp time.Time
+	}{Data: (*NewMyData)(m), TimeStamp: time.Now()}
+
+	return json.Marshal(result)
 }
