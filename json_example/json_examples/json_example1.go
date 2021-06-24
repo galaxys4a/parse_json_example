@@ -30,12 +30,12 @@ func Ex1() {
 }
 
 func (m *MyData) MarshalJSON() ([]byte, error) {
-	type NewMyData MyData
+	type AliasMyData MyData
 
-	result := struct {
-		Data      *NewMyData `json:"data"`
-		TimeStamp time.Time  `json:"date"`
-	}{Data: (*NewMyData)(m), TimeStamp: time.Now()}
+	result := &struct {
+		Data      *AliasMyData `json:"data"`
+		TimeStamp time.Time    `json:"date"`
+	}{Data: (*AliasMyData)(m), TimeStamp: time.Now()}
 
 	return json.Marshal(result)
 }
